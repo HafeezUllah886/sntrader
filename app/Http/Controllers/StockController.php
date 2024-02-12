@@ -11,6 +11,13 @@ class StockController extends Controller
 {
     public function stock($ware = 0)
     {
+        if(auth()->user()->role != 1)
+        {
+            if($ware == 0)
+            {
+                $ware = auth()->user()->warehouseID;
+            }
+        }
         $products = products::all();
         $data = [];
         $balance = 0;
