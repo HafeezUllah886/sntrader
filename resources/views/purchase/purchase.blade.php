@@ -59,19 +59,30 @@
         <div class="card bg-white m-b-30">
             <div class="card-body">
                 <form id="pro_form">
-                <div class="row">
-                    <div class="col-md-3">
+                <div class="row no-gutters">
+                    <div class="col-md-3 g-0">
                         <div class="form-group">
                             <label for="product">{{ __('lang.SelectProduct') }}</label>
-                            <select name="product" required id="product" class="select2">
-                                <option value=""></option>
+                            <select name="product" id="product" class="select2">
+                                <option value="1"></option>
                                 @foreach ($products as $pro)
                                     <option value="{{ $pro->id }}"> {{$pro->code}} | {{ $pro->name }} | {{$pro->bike}}</option>
                                 @endforeach
                             </select>
                         </div>
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-md-1">
+                        <div class="form-group">
+                            <label for="unit">Unit</label>
+                            <select required name="unit" id="unit" class="select2">
+                                <option value="">Nos</option>
+                                @foreach ($units as $unit)
+                                    <option value="{{$unit->value}}">{{$unit->title}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-1">
                         <div class="form-group">
                             <label for="qty">{{ __('lang.Quantity') }}</label>
                             <input type="number" required name="qty" id="qty" class="form-control">

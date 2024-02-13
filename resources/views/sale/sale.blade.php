@@ -21,13 +21,21 @@
             method: 'get',
             url: "{{ url('/sale/getPrice/') }}/"+id,
             success: function(data){
+                var unit = $("#unit").find(':selected').val();
                $('#stock').val(data.balance);
                $('#price').val(data.price);
-               $('#qty').attr('max', data.balance);
+               $('#max').val(data.balance);
+               $('#qty').attr('max', data.balance / unit);
                $('#qty').val('');
             }
         });
     }
+    function unit1()
+{
+    var unit = $("#unit").find(":selected").val();
+    var max = $("#max").val();
+    $("#qty").attr('max', max / unit);
+}
 
     function walkIn1(){
 
@@ -92,10 +100,22 @@
                             <input type="number" disabled name="stock" id="stock" class="form-control">
                         </div>
                     </div>
-                    <div class="col-md-2 p-1">
+                    <div class="col-md-1 p-1">
+                        <div class="form-group">
+                            <label for="unit">Unit</label>
+                            <select name="unit" required id="unit" onchange="unit1()" class="select2">
+                                <option value="1">Nos</option>
+                                @foreach ($units as $unit)
+                                    <option value="{{$unit->value}}">{{$unit->title}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-1 p-1">
                         <div class="form-group">
                             <label for="qty">{{__('lang.Quantity')}}</label>
                             <input type="number" required name="qty" min="1" id="qty" class="form-control">
+                            <input type="hidden" id="max">
                         </div>
                     </div>
                     

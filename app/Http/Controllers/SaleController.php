@@ -11,6 +11,7 @@ use App\Models\sale_details;
 use App\Models\sale_draft;
 use App\Models\stock;
 use App\Models\transactions;
+use App\Models\units;
 use Illuminate\Http\Request;
 
 class SaleController extends Controller
@@ -19,7 +20,8 @@ class SaleController extends Controller
         $customers = account::where('type','Customer')->get();
         $paidIns = account::where('type', 'Business')->get();
         $products = products::all();
-        return view('sale.sale')->with(compact('customers', 'products', 'paidIns'));
+        $units = units::all();
+        return view('sale.sale')->with(compact('customers', 'products', 'paidIns', 'units'));
     }
 
     public function getPrice($id){
@@ -46,7 +48,7 @@ class SaleController extends Controller
         sale_draft::create(
             [
                 'product_id' => $req->product,
-                'qty' => $req->qty,
+                'qty' => $req->qty * $req->unit,
                 'price' => $req->price,
                 'discount' => $req->discount,
                 'warehouseID' => auth()->user()->warehouseID,

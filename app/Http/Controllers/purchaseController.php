@@ -11,6 +11,7 @@ use App\Models\purchase_draft;
 use App\Models\purchase_receives;
 use App\Models\stock;
 use App\Models\transactions;
+use App\Models\units;
 use App\Models\warehouses;
 use Illuminate\Http\Request;
 
@@ -22,7 +23,8 @@ class purchaseController extends Controller
         $paidFroms = account::where('type', 'Business')->get();
         $products = products::all();
         $warehouses = warehouses::all();
-        return view('purchase.purchase')->with(compact('vendors', 'products', 'paidFroms', 'warehouses'));
+        $units = units::all();
+        return view('purchase.purchase')->with(compact('vendors', 'products', 'paidFroms', 'warehouses', 'units'));
     }
 
     public function StoreDraft(request $req)
@@ -35,7 +37,7 @@ class purchaseController extends Controller
         purchase_draft::create(
             [
                 'product_id' => $req->product,
-                'qty' => $req->qty,
+                'qty' => $req->qty * $req->unit,
                 'rate' => $req->rate,
                 'warehouseID' => auth()->user()->warehouseID,
             ]

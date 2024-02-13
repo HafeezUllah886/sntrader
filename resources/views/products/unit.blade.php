@@ -32,6 +32,7 @@
                             <tr>
                                 <th class="border-top-0">{{ __('lang.Ser') }}</th>
                                 <th class="border-top-0">Title</th>
+                                <th class="border-top-0">Value</th>
                                 <th>{{ __('lang.Action') }}</th>
                             </tr>
                         </thead>
@@ -40,7 +41,8 @@
                             <tr>
                                 <td> {{ $key+1 }} </td>
                                 <td>{{ $unit->title }}</td>
-                                <td><button onclick="edit_cat({{ $unit->id }}, '{{ $unit->title }}')" class="btn btn-primary">{{ __('lang.Edit') }}</button></td>
+                                <td>{{ $unit->value }}</td>
+                                <td><button onclick="edit_cat({{ $unit->id }}, '{{ $unit->title }}', '{{ $unit->value }}')" class="btn btn-primary">{{ __('lang.Edit') }}</button></td>
                             </tr>
                             @endforeach
                         </tbody>
@@ -65,12 +67,14 @@
             <form method="post" action="{{url('/units/store')}}">
                 @csrf
                 <div class="modal-body">
-
                     <div class="form-group">
                         <label for="title">Title</label>
                         <input type="text" required name="title" id="title" class="form-control">
                     </div>
-
+                    <div class="form-group">
+                        <label for="value">Value</label>
+                        <input type="text" required name="value" min="2" id="value" class="form-control">
+                    </div>
                 </div>
                 <div class="modal-footer">
                    
@@ -99,6 +103,10 @@
                     <div class="form-group">
                         <label for="title">Title</label>
                         <input type="text" required id="edit_title"  name="title" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="value">Value</label>
+                        <input type="text" required id="edit_value" min="2" name="value" class="form-control">
                     </div>
 
                 </div>
@@ -131,8 +139,9 @@
 
     });
 
-    function edit_cat(id, title) {
+    function edit_cat(id, title, value) {
         $('#edit_title').val(title);
+        $('#edit_value').val(value);
         $('#edit_id').val(id);
         $('#edit').modal('show');
     }

@@ -97,7 +97,7 @@
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
+            <div class="collapse navbar-collapse ml-4" id="navbarNav">
               <ul class="navbar-nav">
                 @if(auth()->user()->role == 1)
                   <li class="nav-item active">
@@ -160,6 +160,7 @@
                     <a class="dropdown-item" href="{{ url('/products') }}">{{ __('lang.Products') }}</a>
                     <a class="dropdown-item" href="{{ url('/category') }}">Category</a>
                     <a class="dropdown-item" href="{{ url('/company') }}">Brand</a>
+                    <a class="dropdown-item" href="{{ url('/units') }}">Units</a>
                   
                   </div>
                 </li>

@@ -16,6 +16,7 @@ use App\Http\Controllers\StockController;
 use App\Http\Controllers\usersController;
 use App\Http\Controllers\PurchaseReceivesController;
 use App\Http\Controllers\StockTransferController;
+use App\Http\Controllers\UnitsController;
 use App\Http\Controllers\WarehousesController;
 use App\Models\warehouses;
 use Illuminate\Routing\Controllers\Middleware;
@@ -208,6 +209,10 @@ Route::middleware('auth')->group(function (){
     Route::get('/areas', [AreaController::class, 'index']);
     Route::post('/areas/store', [AreaController::class, 'store']);
     Route::post('/areas/update', [AreaController::class, 'update']);
+
+    Route::get('/units', [UnitsController::class, 'index']);
+    Route::post('/units/store', [UnitsController::class, 'store']);
+    Route::post('/units/update', [UnitsController::class, 'update']);
 });
 
 Route::middleware(['confirm.password'])->group(function () {
