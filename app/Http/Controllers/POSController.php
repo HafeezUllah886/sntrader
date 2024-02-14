@@ -125,7 +125,7 @@ class POSController extends Controller
                     'product_id' => $id,
                     'price' => $req->price[$key],
                     'discount' => $req->discount[$key],
-                    'qty' => $req->qty[$key],
+                    'qty' => $req->qty[$key] * $req->unit[$key],
                     'warehouseID' => auth()->user()->warehouseID,
                     'ref' => $refID,
                     'date' => $req->date
