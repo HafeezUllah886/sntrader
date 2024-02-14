@@ -10,6 +10,7 @@ use App\Models\sale;
 use App\Models\sale_details;
 use App\Models\salesman;
 use App\Models\stock;
+use App\Models\units;
 use Illuminate\Http\Request;
 
 class POSController extends Controller
@@ -21,7 +22,8 @@ class POSController extends Controller
         $brands = company::with('products')->get(); */
         $accounts = account::where('type', 'Business')->get();
         $customers = account::where('type', 'Customer')->get();
-        return view('pos.index', compact('products', 'accounts', 'customers'));
+        $units = units::all();
+        return view('pos.index', compact('products', 'accounts', 'customers', 'units'));
     }
 
     public function allProducts()

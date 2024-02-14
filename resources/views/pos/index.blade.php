@@ -58,6 +58,7 @@ input[type=number] {
                             <th width="15%">Color</th> --}}
                             <th width="10%">Price</th>
                             <th width="10%">Dis</th>
+                            <th width="10%">Unit</th>
                             <th width="20%" class="text-center">Qty</th>
                             <th >Amount</th>
                             <th ></th>
@@ -75,10 +76,9 @@ input[type=number] {
                         <tbody><tr>
                             <td>Items</td>
                             <td width="20%" class="text-center text-dark"><span id="rowQty">0</span>(<span id="numQty">0</span>)</td>
-                            <td></td>
-                            <td width="20%"></td>
-                            {{-- <td>Discount</td>
-                            <td width="20%"><input type="number" class="pos-input" step="any" oninput="updateAmounts()" value="0.00" name="discount" id="discount"></td> --}}
+
+                            <td>Discount</td>
+                            <td width="20%"><input type="number" class="pos-input" step="any" oninput="updateAmounts()" value="0.00" name="discount" id="discount"></td>
                             <td>Total</td>
                             <td width="20%"><input type="number" class="pos-input" style="background:#97ffbf;" readonly="" step="any" value="0.00" name="total" id="total"></td>
                         </tr>
@@ -414,6 +414,7 @@ input[type=number] {
                 $("#sideBar").html(sideBarHTML);
             }
             var existingProducts = [];
+            var units = @json($units);
            function getSingleProduct(id)
             {
                 var productsListHTML = '';
@@ -427,11 +428,17 @@ input[type=number] {
                         if(data.stock !== 0)
                         {
                             productsListHTML += '<tr id="row_'+data.product.id+'">';
-                                productsListHTML += '<td><p>'+data.product.name + " | " + data.product.category + " | " + data.product.brand +'<br><span style="font-size:10px;">'+data.product.code+'</span></p></td>';
+                                productsListHTML += '<td><p>'+data.product.name + " | " + data.product.brand +'<br><span style="font-size:10px;">'+data.product.code+'</span></p></td>';
                                /*  productsListHTML += '<td>'+data.product.size+'</td>';
                                 productsListHTML += '<td>'+data.product.color+'</td>'; */
                                 productsListHTML += '<td><input type="number" name="price[]" step="any" id="price_'+data.product.id+'" class="form-control form-control-sm bg-white text-dark" style="background: transparent;outline: none;border: none;text-align: center;padding:0;" readonly value="'+data.product.price+'"></td>';
                                 productsListHTML += '<td><input type="number" name="discount[]" step="any" id="discount_'+data.product.id+'" oninput="updateDiscount('+data.product.id+')" class="form-control form-control-sm bg-white text-dark" style="background: transparent;outline: none;border: none;text-align: center;padding:0;" value="0"></td>';
+                                productsListHTML += '<td><select name="unit[]" id="unit_'+data.product.id+'" onchange="updateUnit('+data.product.id+')" class="form-control form-control-sm bg-white text-dark" style="background: transparent;outline: none;border: none;text-align: center;padding:0;">';
+                                    productsListHTML += '<option value="1">Nos</option>';
+                                   units.forEach(function (unit){
+                                    productsListHTML += '<option value="'+unit.value+'">'+unit.title+'</option>';
+                                   });
+                                productsListHTML += '</select></td>';
                                 productsListHTML += '<td class="text-center">';
                                     productsListHTML += '<div class="input-group">';
                                         productsListHTML += '<span class="input-group-text btn btn-danger btn-sm" onclick="decreaseQty('+data.product.id+')">-</span>';
@@ -443,6 +450,7 @@ input[type=number] {
                                 productsListHTML += '<td><input type="number" name="amount[]" step="any" id="amount_'+data.product.id+'" class="form-control form-control-sm bg-white text-dark" style="background: transparent;outline: none;border: none;text-align: center;padding:0;" readonly value="'+data.product.price+'"></td>';
                                 productsListHTML += '<td><span class="btn btn-danger btn-sm" onclick="deleteRow('+data.product.id+')">X</span></td>';
                                 productsListHTML += '<input type="hidden" value="'+data.product.id+'" name="id[]">';
+                                productsListHTML += '<input type="hidden" value="'+data.stock+'" id="max_'+data.product.id+'">';
                             productsListHTML += '</tr>';
                             $("#productsList").prepend(productsListHTML);
                             existingProducts.push(data.product.id);
@@ -467,21 +475,24 @@ input[type=number] {
 
 
             function updateQty(id){
-        $("input[id^='qty_']").each(function() {
+                $("input[id^='qty_']").each(function() {
                 var $input = $(this);
                 var currentValue = parseInt($input.val());
+                var unit = $('#unit_'+id).find(':selected').val();
                 var maxAttributeValue = parseInt($input.attr("max"));
-
-                if (currentValue > maxAttributeValue) {
-                    alert(maxAttributeValue+ " Available in stock");
-                    $input.val(maxAttributeValue);
+                var max = parseInt(maxAttributeValue / unit);
+                if (currentValue > max) {
+                    alert(max+ " Available in stock");
+                    $input.val(max);
                 }
                 if (currentValue < 1) {
                     $input.val(1);
                 }
             });
+            var unit = $('#unit_'+id).find(':selected').val();
         var existingQty = $("#qty_"+id).val();
-        var amount = existingQty * ($("#price_"+id).val() - $("#discount_"+id).val());
+        var qty = existingQty * unit;
+        var amount = qty * ($("#price_"+id).val() - $("#discount_"+id).val());
         $("#amount_"+id).val(amount.toFixed(2));
         updateAmounts();
     }
@@ -492,7 +503,7 @@ input[type=number] {
         $("#amount_"+id).val(amount.toFixed(2));
         updateAmounts();
     }
-    
+
     function increaseQty(id)
     {
         var existingQty = $("#qty_"+id).val();

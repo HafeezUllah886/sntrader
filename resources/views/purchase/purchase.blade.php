@@ -75,7 +75,7 @@
                         <div class="form-group">
                             <label for="unit">Unit</label>
                             <select required name="unit" id="unit" class="select2">
-                                <option value="">Nos</option>
+                                <option value="1">Nos</option>
                                 @foreach ($units as $unit)
                                     <option value="{{$unit->value}}">{{$unit->title}}</option>
                                 @endforeach
