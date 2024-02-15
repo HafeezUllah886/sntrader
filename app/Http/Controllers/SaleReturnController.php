@@ -72,6 +72,7 @@ class SaleReturnController extends Controller
                 'date' => $req->date,
                 'paidBy' => $account,
                 'deduction' => $req->deduction,
+                'warehouseID' => auth()->user()->warehouseID,
                 'amount' => $req->payable,
                 'ref' => $ref,
             ]
@@ -90,6 +91,7 @@ class SaleReturnController extends Controller
                     'product_id' => $id,
                     'qty' => $qty,
                     'price' => $price,
+                    'warehouseID' => auth()->user()->warehouseID,
                     'ref' => $ref,
                 ]);
 
@@ -98,6 +100,7 @@ class SaleReturnController extends Controller
                         'product_id' => $id,
                         'date' => $req->date,
                         'desc' => "Sale Return",
+                        'warehouseID' => auth()->user()->warehouseID,
                         'cr' => $qty,
                         'ref' => $ref
                     ]
