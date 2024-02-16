@@ -17,7 +17,7 @@
     <div class="col-12">
         <div class="card-header">
             <div class="d-flex justify-content-between">
-                <h4>{{ __('lang.Company') }}</h4>
+                <h4>Brands</h4>
                 <button class="btn btn-success" data-toggle="modal" data-target="#modal">{{ __('lang.CreateNew') }}</button>
             </div>
         </div>
@@ -31,7 +31,7 @@
                         <thead class="th-color">
                             <tr>
                                 <th class="border-top-0">{{ __('lang.Ser') }}</th>
-                                <th class="border-top-0">{{ __('lang.CompanyName') }}</th>
+                                <th class="border-top-0">Brand</th>
                                 <th>{{ __('lang.Action') }}</th>
                             </tr>
                         </thead>
