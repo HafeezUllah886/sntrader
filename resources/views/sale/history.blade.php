@@ -57,17 +57,17 @@
                                         $subTotal = $data1->qty * ($data1->price - $data1->discount);
                                         @endphp
                                         <tr>
-                                            <td>{{$data1->product->name}}</td>
-                                            <td>{{$data1->qty}}</td>
-                                            <td>{{round($data1->price,2)}}</td>
-                                            <td>{{round($data1->discount)}}</td>
-                                            <td>{{$subTotal}}</td>
+                                            <td>{{@$data1->product->name}}</td>
+                                            <td>{{@$data1->qty}}</td>
+                                            <td>{{@round($data1->price,2)}}</td>
+                                            <td>{{@round($data1->discount)}}</td>
+                                            <td>{{@$subTotal}}</td>
                                         </tr>
                                         @endforeach
-                                        @if($bill->discount)
+                                        @if(@$bill->discount)
                                         <tr>
                                             <td colspan="5">
-                                                {{__('lang.Discount')}}: <strong>{{ $bill->discount }}</strong>
+                                                {{__('lang.Discount')}}: <strong>{{ @$bill->discount }}</strong>
                                             </td>
                                         </tr>
                                         @endif
