@@ -155,7 +155,7 @@
         </div>
         <div class="footer">
             <hr>
-            <h5 class="text-center">Developed by Diamond Software <br> </h5>
+            <h5 class="text-center">Developed by Diamond Software <br> diamondsoftwareqta.com</h5>
         </div>
     </div>
 </body>

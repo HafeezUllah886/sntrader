@@ -422,8 +422,7 @@
                 sidebarHTML += '<img src="' + image + '" class="card-img-top" style="width:100%;height:130px;">';
                 sidebarHTML += '<div class="card-body">';
                 sidebarHTML += '<h6 class="card-title">' + s.name + '</h5>';
-                sidebarHTML += '<p class="card-subtitle text-muted" style="font-size:10px;">' + s.category + " | " +
-                    s.brand + '</p>';
+                sidebarHTML += '<p class="card-subtitle text-muted" style="font-size:10px;">' + s.category + " | " +s.brand + " | "+s.stock+'</p>';
                 sidebarHTML += '</div>';
                 sidebarHTML += '</div>';
                 sidebarHTML += '</div>';

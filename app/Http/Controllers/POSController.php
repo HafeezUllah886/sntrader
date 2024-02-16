@@ -32,12 +32,16 @@ class POSController extends Controller
         $data = [];
         foreach($products as $product)
         {
+            $cr = stock::where('product_id', $product->id)->where('warehouseID', auth()->user()->warehouseID)->sum('cr');
+            $db = stock::where('product_id', $product->id)->where('warehouseID', auth()->user()->warehouseID)->sum('db');
+            $stock = $cr - $db;
             $data[] = [
                 'id' => $product->id,
                 'name' => $product->name,
                 'pic' => $product->pic,
                 'category' => $product->category,
                 'brand' => $product->brand,
+                'stock' => $stock
             ];
         }
         return $data;
