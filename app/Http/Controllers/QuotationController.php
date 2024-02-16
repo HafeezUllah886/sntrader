@@ -30,6 +30,7 @@ class QuotationController extends Controller
             'address' => $req->address,
             'date' => $req->date,
             'validTill' => $req->valid,
+            'warehouseID' => auth()->user()->warehouseID,
             'desc' => $req->desc,
             'ref' => $ref,
         ]);

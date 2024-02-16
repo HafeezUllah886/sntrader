@@ -55,14 +55,14 @@
                                         <td>
                                             <table class="w-100">
                                                 <th>{{__('lang.Product')}}</th>
-                                                <th>{{__('lang.Size')}}</th>
+                                                <th>Brand</th>
                                                 <th>{{__('lang.Qty')}}</th>
                                                 <th>{{__('lang.Price')}}</th>
                                                 <tbody>
                                                     @foreach ($quot->details as $details)
                                                     <tr>
                                                         <td>{{$details->product1->name}}</td>
-                                                        <td>{{$details->product1->size}}</td>
+                                                        <td>{{$details->product1->brand}}</td>
                                                         <td>{{$details->qty}}</td>
                                                         <td>{{$details->price}}</td>
                                                     </tr>
@@ -110,6 +110,7 @@
                         <div class="form-group">
                             <label for="customer">{{__('lang.Customer')}}</label>
                             <select name="customer" id="customer" onchange="walkIn1()" class="select2" required>
+                                <option value="0"></option>
                                 @foreach ($accounts as $account)
                                     <option value="{{ $account->id }}">{{ $account->title }} ({{ $account->type }})
                                     </option>

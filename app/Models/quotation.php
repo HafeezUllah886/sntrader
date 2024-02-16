@@ -8,19 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class quotation extends Model
 {
     use HasFactory;
-    protected $fillable = (
-        [
-            'customer',
-            'date',
-            'walkIn',
-            'discount',
-            'phone',
-            'address',
-            'validTill',
-            'desc',
-            'ref',
-        ]
-    );
+    protected $guarded = [];
 
     public function customer_account(){
         return $this->belongsTo(account::class, 'customer');

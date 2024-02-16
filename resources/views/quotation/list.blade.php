@@ -12,7 +12,7 @@
 <tr>
     <td>{{ $ser }}</td>
     <td>{{ $item->product1->name }}</td>
-    <td>{{ $item->product1->size }}</td>
+    <td>{{ $item->product1->brand }}</td>
     <td><input type="number" class="text-center" value="{{ $item->qty }}" id="qty{{ $item->id }}" onfocusout="qty({{ $item->id }})"></td>
     <td><input type="number" class="text-center" value="{{ $item->price }}" id="rate{{ $item->id }}" onfocusout="rate({{ $item->id }})"></td>
     <td>{{ $amount }}</td>
