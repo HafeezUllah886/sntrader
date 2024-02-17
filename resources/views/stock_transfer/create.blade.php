@@ -49,9 +49,8 @@
                         <thead class="th-color">
                             <tr>
                                 <th class="border-top-0">Product</th>
-                                <th class="border-top-0">Bike</th>
+                                <th class="border-top-0">Category</th>
                                 <th class="border-top-0">Brand</th>
-                                <th class="border-top-0">Model</th>
                                 <th class="border-top-0">Quantity</th>
                                 <th>Action</th>
                             </tr>
@@ -134,9 +133,8 @@
                         {
                             productsListHTML += '<tr id="row_'+data.product.id+'">';
                                 productsListHTML += '<td><p>'+data.product.name + '</p></td>';
-                                productsListHTML += '<td><p>'+ data.product.bike + '</p></td>';
+                                productsListHTML += '<td><p>'+ data.product.category + '</p></td>';
                                 productsListHTML += '<td><p>'+ data.product.brand +'</p></td>';
-                                productsListHTML += '<td><p>'+ data.product.model + '</p></td>';
                                 productsListHTML += '<td>';
                                     productsListHTML += '<div class="input-group mb-3">';
                                         productsListHTML += '<span class="input-group-text btn btn-danger btn-sm" onclick="decreaseQty('+data.product.id+')">-</span>';

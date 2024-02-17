@@ -216,7 +216,7 @@ App::setLocale(auth()->user()->lang);
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="alert">Alert Qty</label>
-                                <input type="number" required name="alert" id="alert" class="form-control">
+                                <input type="number" required value="0" name="alert" id="alert" class="form-control">
                             </div>
                         </div>
                         <div class="col-md-6">

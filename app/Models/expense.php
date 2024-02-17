@@ -8,15 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class expense extends Model
 {
     use HasFactory;
-    protected $fillable = (
-        [
-            'account_id',
-            'date',
-            'amount',
-            'desc',
-            'ref'
-        ]
-    );
+    protected $guarded = [];
 
     public function account()
     {

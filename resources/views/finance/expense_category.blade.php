@@ -17,7 +17,7 @@
     <div class="col-12">
         <div class="card-header">
             <div class="d-flex justify-content-between">
-                <h4>Warehouses</h4>
+                <h4>Expense Categories</h4>
                 <button class="btn btn-success" data-toggle="modal" data-target="#modal">{{ __('lang.CreateNew') }}</button>
             </div>
         </div>
@@ -30,20 +30,17 @@
                     <table class="table table-bordered table-striped table-hover text-center mb-0" id="datatable1">
                         <thead class="th-color">
                             <tr>
-                                <th class="border-top-0">Ser</th>
-                                <th class="border-top-0">Name</th>
+                                <th class="border-top-0">{{ __('lang.Ser') }}</th>
+                                <th class="border-top-0">{{ __('lang.CategoryName') }}</th>
                                 <th>{{ __('lang.Action') }}</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($warehouses as $key => $warehouse)
+                            @foreach ($categories as $key => $cat)
                             <tr>
                                 <td> {{ $key+1 }} </td>
-                                <td>{{ $warehouse->name }}</td>
-                                <td>
-                                    <button onclick="edit({{ $warehouse->id }}, '{{ $warehouse->name }}')" class="btn btn-primary">{{ __('lang.Edit') }}</button>
-                                    <a href="{{url('/stock')}}/{{$warehouse->id}}" class="btn btn-success">View Stock</a>
-                                </td>
+                                <td>{{ $cat->category }}</td>
+                                <td><button onclick="edit_cat({{ $cat->id }}, '{{ $cat->category }}')" class="btn btn-primary">{{ __('lang.Edit') }}</button></td>
                             </tr>
                             @endforeach
                         </tbody>
@@ -60,18 +57,18 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Create Warehouse</h5>
+                <h5 class="modal-title">{{ __('lang.Category') }}</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form method="post" action="{{ url('/warehouses/store') }}">
+            <form method="post" action="{{url('/expense/category/store')}}">
                 @csrf
                 <div class="modal-body">
 
                     <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" required name="name" id="name" class="form-control">
+                        <label for="cat">{{ __('lang.CategoryName') }}</label>
+                        <input type="text" required name="category" id="cat" class="form-control">
                     </div>
 
                 </div>
@@ -89,18 +86,18 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Edit Warehouse</h5>
+                <h5 class="modal-title">{{ __('lang.EditCategory') }}</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
 
                 <div class="modal-body">
-                    <form action="{{ url('/warehouses/update') }}" method="post">
+                    <form action="{{ url('/expense/category/update') }}" method="post">
                         @csrf
                     <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" required id="edit_name"  name="name" class="form-control">
+                        <label for="cat">{{ __('lang.CategoryName') }}</label>
+                        <input type="text" required id="edit_cat"  name="category" class="form-control">
                     </div>
 
                 </div>
@@ -133,11 +130,10 @@
 
     });
 
-    function edit(id, name) {
-        $('#edit_name').val(name);
+    function edit_cat(id, cat) {
+        $('#edit_cat').val(cat);
         $('#edit_id').val(id);
         $('#edit').modal('show');
     }
-
 </script>
 @endsection

@@ -11,15 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('expenses', function (Blueprint $table) {
+        Schema::create('exp_categories', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('account_id');
-            $table->timestamp('date', $precision = 0);
-            $table->text('desc')->nullable();
-            $table->unsignedDecimal('amount', 10, 2);
             $table->string('category');
-            $table->unsignedBigInteger('ref');
-            $table->foreign('account_id')->references('id')->on('accounts');
             $table->timestamps();
         });
     }
@@ -29,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('expenses');
+        Schema::dropIfExists('exp_categories');
     }
 };

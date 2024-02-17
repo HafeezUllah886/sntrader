@@ -17,6 +17,8 @@ use Barryvdh\DomPDF\Facade\Pdf;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\vendorsImport;
 use App\Models\area;
+use App\Models\expCategory;
+use PhpOffice\PhpSpreadsheet\Calculation\Category;
 
 class AccountController extends Controller
 {
@@ -236,7 +238,8 @@ class AccountController extends Controller
     public function expense(){
         $expenses = expense::orderBy('id', 'desc')->get();
         $accounts = account::where('type', 'Business')->get();
-        return view('finance.expenses')->with(compact('expenses', 'accounts'));
+        $categories = expCategory::all();
+        return view('finance.expenses')->with(compact('expenses', 'accounts', 'categories'));
     }
 
     public function storeExpense(request $req){
@@ -248,6 +251,7 @@ class AccountController extends Controller
                 'date' => $req->date,
                 'amount' => $req->amount,
                 'desc' => $req->desc,
+                'category' => $req->category,
                 'ref' => $ref,
             ]
         );

@@ -60,22 +60,24 @@
                                 $ser += 1;
                                 $total += $item['value'];
                             @endphp
-                            <tr>
-                                <td> {{ $ser }} </td>
-                                <td>{{$item['product']}}</td>
-                                <td>{{$item['code']}}</td>
-                                <td>{{$item['category']}}</td>
-                                <td>{{$item['brand']}}</td>
-                                <td>{{$item['balance']}}</td>
-                                @if(auth()->user()->role == 1)
-                                <td>{{$item['price']}}</td>
-                                @endif
-                                <td>{{$item['retail']}}</td>
-                                @if(auth()->user()->role == 1)
-                                <td>{{$item['wholesale']}}</td>
-                                <td>{{$item['value']}}</td>
-                                @endif
-                            </tr>
+                             @if ($item['balance'] > 0)
+                             <tr>
+                                 <td> {{ $ser }} </td>
+                                 <td>{{$item['product']}}</td>
+                                 <td>{{$item['code']}}</td>
+                                 <td>{{$item['category']}}</td>
+                                 <td>{{$item['brand']}}</td>
+                                 <td>{{$item['balance']}}</td>
+                                 @if(auth()->user()->role == 1)
+                                 <td>{{$item['price']}}</td>
+                                 @endif
+                                 <td>{{$item['retail']}}</td>
+                                 @if(auth()->user()->role == 1)
+                                 <td>{{$item['wholesale']}}</td>
+                                 <td>{{$item['value']}}</td>
+                                 @endif
+                             </tr>
+                             @endif
                             @endforeach
                         </tbody>
                         @if(auth()->user()->role == 1)

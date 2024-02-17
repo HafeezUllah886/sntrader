@@ -5,6 +5,7 @@ use App\Http\Controllers\AreaController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ConfirmPasswordController;
 use App\Http\Controllers\dashboardController;
+use App\Http\Controllers\ExpCategoryController;
 use App\Http\Controllers\POSController;
 use App\Http\Controllers\productController;
 use App\Http\Controllers\purchaseController;
@@ -213,6 +214,10 @@ Route::middleware('auth')->group(function (){
     Route::get('/units', [UnitsController::class, 'index']);
     Route::post('/units/store', [UnitsController::class, 'store']);
     Route::post('/units/update', [UnitsController::class, 'update']);
+
+    Route::get('/expense/category', [ExpCategoryController::class, 'index']);
+    Route::post('/expense/category/store', [ExpCategoryController::class, 'store']);
+    Route::post('/expense/category/update', [ExpCategoryController::class, 'update']);
 });
 
 Route::middleware(['confirm.password'])->group(function () {
