@@ -183,40 +183,66 @@ function updatePurchaseAmount($id){
     {
         if($bill->vendor_account->type == 'Vendor')
         {
-            $trans = transactions::where('account_id', $bill->vendor_account->id)->where('ref', $bill->ref)->first();
-            $trans->cr = $total;
-            $trans->date = $bill->date;
+            $trans = transactions::where('account_id', $bill->vendor_account->id)->where('ref', $bill->ref)->get();
+            foreach($trans as $tran)
+            {
+                $tran->cr = $total;
+                $tran->date = $bill->date;
+                $tran->save();
+            }
+            
         }
         else{
-            $trans = transactions::where('account_id', $bill->vendor_account->id)->where('ref', $bill->ref)->first();
-            $trans->db = $total;
-            $trans->date = $bill->date;
+            $trans = transactions::where('account_id', $bill->vendor_account->id)->where('ref', $bill->ref)->get();
+            foreach($trans as $tran)
+            {
+                $tran->db = $total;
+                $tran->date = $bill->date;
+                $tran->save();
+            }
         }
 
         $trans->save();
     }
     elseif($bill->isPaid == 'Yes')
     {
-        $trans = transactions::where('account_id', $bill->account->id)->where('ref', $bill->ref)->first();
-        $trans->db = $total;
-        $trans->date = $bill->date;
-        $trans->save();
+        $trans = transactions::where('account_id', $bill->account->id)->where('ref', $bill->ref)->get();
+        foreach($trans as $tran)
+            {
+                $tran->db = $total;
+                $tran->date = $bill->date;
+                $tran->save();
+            }
+            $trans = transactions::where('account_id', $bill->vendor_account->id)->where('ref', $bill->ref)->get();
+            foreach($trans as $tran)
+                {
+                    $tran->db = $total;
+                    $tran->cr = $total;
+                    $tran->date = $bill->date;
+                    $tran->save();
+                }
     }
     else
     {
         if($bill->vendor_account->type == 'Vendor')
         {
-            $trans = transactions::where('account_id', $bill->vendor_account->id)->where('ref', $bill->ref)->first();
-            $trans->cr = $total;
-            $trans->date = $bill->date;
+            $trans = transactions::where('account_id', $bill->vendor_account->id)->where('ref', $bill->ref)->get();
+            foreach($trans as $tran)
+            {
+                $tran->cr = $total;
+                $tran->date = $bill->date;
+                $tran->save();
+            }
         }
         else{
-            $trans = transactions::where('account_id', $bill->vendor_account->id)->where('ref', $bill->ref)->first();
-            $trans->db = $total;
-            $trans->date = $bill->date;
+            $trans = transactions::where('account_id', $bill->vendor_account->id)->where('ref', $bill->ref)->get();
+            foreach($trans as $tran)
+            {
+                $tran->db = $total;
+                $tran->date = $bill->date;
+                $tran->save();
+            }
         }
-
-        $trans->save();
 
     }
 }
