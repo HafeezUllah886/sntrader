@@ -45,11 +45,12 @@ class SaleController extends Controller
             return "Existing";
         }
 
+        $price = $req->price / $req->unit;
         sale_draft::create(
             [
                 'product_id' => $req->product,
                 'qty' => $req->qty * $req->unit,
-                'price' => $req->price,
+                'price' => $price,
                 'discount' => $req->discount,
                 'warehouseID' => auth()->user()->warehouseID,
             ]

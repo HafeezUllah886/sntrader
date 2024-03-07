@@ -34,18 +34,20 @@ class purchaseController extends Controller
             return "Existing";
         }
 
+        $rate = $req->rate / $req->unit;
+
         purchase_draft::create(
             [
                 'product_id' => $req->product,
                 'qty' => $req->qty * $req->unit,
-                'rate' => $req->rate,
+                'rate' => $rate,
                 'warehouseID' => auth()->user()->warehouseID,
             ]
         );
 
         products::where('id', $req->product)->update(
             [
-                'pprice' => $req->rate,
+                'pprice' => $rate,
                 'price' => $req->price,
                 'wholesale' => $req->wholesale,
             ]
