@@ -122,7 +122,7 @@ App::setLocale(auth()->user()->lang);
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="category">Category</label>
-                                <select name="category" id="edit_category" class="form-control">
+                                <select name="category" required id="edit_category" class="form-control">
                                     <option value=""></option>
                                     @foreach ($categories as $cat)
                                         <option value="{{$cat->cat}}">{{$cat->cat}}</option>
@@ -133,7 +133,7 @@ App::setLocale(auth()->user()->lang);
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="brand">Brand</label>
-                                <select name="brand" id="edit_brand" class="form-control">
+                                <select name="brand" required id="edit_brand" class="form-control">
                                     <option value=""></option>
                                     @foreach ($brands as $brand)
                                         <option value="{{$brand->name}}">{{$brand->name}}</option>
@@ -194,7 +194,7 @@ App::setLocale(auth()->user()->lang);
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="category">Category</label>
-                                <select name="category" id="category" class="form-control">
+                                <select name="category" required id="category" class="form-control">
                                     <option value=""></option>
                                     @foreach ($categories as $cat)
                                         <option value="{{$cat->cat}}">{{$cat->cat}}</option>
@@ -205,7 +205,7 @@ App::setLocale(auth()->user()->lang);
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="brand">Brand</label>
-                                <select name="brand" id="brand" class="form-control">
+                                <select name="brand" id="brand" required class="form-control">
                                     <option value=""></option>
                                     @foreach ($brands as $brand)
                                         <option value="{{$brand->name}}">{{$brand->name}}</option>
