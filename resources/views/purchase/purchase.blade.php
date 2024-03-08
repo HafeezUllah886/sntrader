@@ -64,7 +64,7 @@
                         <div class="form-group">
                             <label for="product">{{ __('lang.SelectProduct') }}</label>
                             <select name="product" id="product" class="select2">
-                                <option value="1"></option>
+                                <option value="0"></option>
                                 @foreach ($products as $pro)
                                     <option value="{{ $pro->id }}"> {{$pro->code}} | {{ $pro->name }} | {{$pro->bike}}</option>
                                 @endforeach

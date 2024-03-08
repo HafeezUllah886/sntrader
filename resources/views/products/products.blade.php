@@ -116,7 +116,7 @@ App::setLocale(auth()->user()->lang);
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="code">Code</label>
-                                <input type="text" name="code" id="edit_code" class="form-control">
+                                <input type="text" name="code" required id="edit_code" class="form-control">
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -188,7 +188,7 @@ App::setLocale(auth()->user()->lang);
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="code">Code</label>
-                                <input type="text" name="code" id="code" class="form-control">
+                                <input type="text" required name="code" id="code" class="form-control">
                             </div>
                         </div>
                         <div class="col-md-6">
