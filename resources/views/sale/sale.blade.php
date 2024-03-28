@@ -114,7 +114,7 @@
                     <div class="col-md-1 p-1">
                         <div class="form-group">
                             <label for="qty">{{__('lang.Quantity')}}</label>
-                            <input type="number" required name="qty" min="1" id="qty" class="form-control">
+                            <input type="number" required name="qty" min="0.1" step="any" id="qty" class="form-control">
                             <input type="hidden" id="max">
                         </div>
                     </div>

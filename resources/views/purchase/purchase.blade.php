@@ -85,7 +85,7 @@
                     <div class="col-md-1">
                         <div class="form-group">
                             <label for="qty">{{ __('lang.Quantity') }}</label>
-                            <input type="number" required name="qty" id="qty" class="form-control">
+                            <input type="number" required name="qty" step="any" min="0.1" id="qty" class="form-control">
                         </div>
                     </div>
                     <div class="col-md-2">
