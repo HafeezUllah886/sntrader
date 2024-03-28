@@ -17,7 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('product_id');
             $table->unsignedDecimal('price', 10, 2);
             $table->unsignedDecimal('discount', 10, 2);
-            $table->unsignedInteger('qty');
+            $table->float('qty',10,2);
             $table->unsignedBigInteger('ref');
             $table->timestamp('date', $precision = 0);
             $table->foreign('product_id')->references('id')->on('products');

@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('return_id');
             $table->unsignedBigInteger('product_id');
-            $table->unsignedInteger('qty');
+            $table->float('qty', 10, 2);
             $table->unsignedDecimal('price');
             $table->unsignedInteger('ref');
             $table->foreignId('warehouseID')->constrained('warehouses', 'id');

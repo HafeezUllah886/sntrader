@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('product_id');
             $table->unsignedDecimal('rate', 10, 2);
-            $table->unsignedInteger('qty');
+            $table->float('qty', 10,2);
             $table->foreignId('warehouseID')->constrained('warehouses', 'id');
             $table->foreign('product_id')->references('id')->on('products');
             $table->timestamps();
