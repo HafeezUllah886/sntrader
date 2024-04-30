@@ -23,7 +23,7 @@
                                 <div class="row no-gutters align-items-center">
                                     <div class="col-auto">
                                         <div class="info_label h5 mb-0 mr-3 font-weight-bold text-gray-800">
-                                            {{ vendorDues() }}
+                                            {{ number_format(vendorDues()) }}
                                         </div>
 
                                     </div>
@@ -44,7 +44,7 @@
                                 <div class="row no-gutters align-items-center">
                                     <div class="col-auto">
                                         <div class="info_label h5 mb-0 mr-3 font-weight-bold text-gray-800">
-                                            {{ totalExpenses() }}
+                                            {{ number_format(totalExpenses()) }}
                                         </div>
 
                                     </div>
@@ -64,7 +64,7 @@
                                 <div class="row no-gutters align-items-center">
                                     <div class="col-auto">
                                         <div class="info_label h5 mb-0 mr-3 font-weight-bold text-gray-800">
-                                            {{ vendorDues() + totalExpenses()}}
+                                            {{ number_format(vendorDues() + totalExpenses())}}
                                         </div>
 
                                     </div>
@@ -85,7 +85,7 @@
                                 <div class="row no-gutters align-items-center">
                                     <div class="col-auto">
                                         <div class="info_label h5 mb-0 mr-3 font-weight-bold text-gray-800">
-                                            {{ (customerDues() + stockValue() + cash()) - (vendorDues() + totalExpenses()) }}
+                                            {{ number_format((customerDues() + stockValue() + cash()) - (vendorDues() + totalExpenses())) }}
                                         </div>
                                     </div>
                                 </div>
@@ -103,7 +103,7 @@
                                 <div class="row no-gutters align-items-center">
                                     <div class="col-auto">
                                         <div class="info_label h5 mb-0 mr-3 font-weight-bold text-gray-800">
-                                            {{ customerDues() }}
+                                            {{ number_format(customerDues()) }}
                                         </div>
 
                                     </div>
@@ -124,7 +124,7 @@
                                 <div class="row no-gutters align-items-center">
                                     <div class="col-auto">
                                         <div class="info_label h5 mb-0 mr-3 font-weight-bold text-gray-800">
-                                            {{ stockValue() }}
+                                            {{ number_format(stockValue()) }}
                                         </div>
                                     </div>
                                 </div>
@@ -142,7 +142,7 @@
                                 <div class="row no-gutters align-items-center">
                                     <div class="col-auto">
                                         <div class="info_label h5 mb-0 mr-3 font-weight-bold text-gray-800">
-                                            {{ cash() }}
+                                            {{ number_format(cash()) }}
                                         </div>
                                     </div>
                                 </div>
@@ -161,7 +161,7 @@
                                 <div class="row no-gutters align-items-center">
                                     <div class="col-auto">
                                         <div class="info_label h5 mb-0 mr-3 font-weight-bold text-gray-800">
-                                            {{ customerDues() + stockValue() + cash()}}
+                                            {{ number_format(customerDues() + stockValue() + cash())}}
                                         </div>
                                     </div>
                                 </div>
