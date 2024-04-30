@@ -83,6 +83,11 @@ function vendorDues(){
     return $balance;
  }
 
+ function totalExpenses()
+ {
+    return expense::sum('amount');
+ }
+
 function totalCash(){
     $accounts = account::where('Category', 'Cash')->get();
     $cr = 0;
@@ -115,6 +120,41 @@ function todayCash(){
 
 }
 
+function stockValue()
+{
+    $products = products::all();
+    $balance = 0;
+    $value = 0;
+    $total = 0;
+
+    foreach ($products as $product) {
+       
+        $stock_cr = stock::where('product_id', $product->id)->sum('cr');
+        $stock_db = stock::where('product_id', $product->id)->sum('db');
+        $balance = $stock_cr - $stock_db;
+        $value = $balance * $product->pprice;
+
+        $total += $value;
+    }
+
+    return $total;
+}
+
+function cash(){
+    $accounts = account::where('type', 'Business')->get();
+    $cr = 0;
+   $db = 0;
+   $balance = 0;
+   foreach ($accounts as $account){
+        $cr = transactions::where('account_id', $account->id)->sum('cr');
+        $db = transactions::where('account_id', $account->id)->sum('db');
+
+        $balance += $cr - $db;
+   }
+
+   return $balance;
+
+}
 
 function totalBank(){
     $accounts = account::where('Category', 'Bank')->get();

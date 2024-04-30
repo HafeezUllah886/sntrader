@@ -19,6 +19,86 @@
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-danger text-uppercase mb-1"> <a class="text-danger" href="{{ url('/dashboard/customer_dues') }}">Vendor Dues</a> </div>
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col-auto">
+                                        <div class="info_label h5 mb-0 mr-3 font-weight-bold text-gray-800">
+                                            {{ vendorDues() }}
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-3 mt-3">
+                <div class="card border-left-info shadow  py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-danger text-uppercase mb-1"> <a class="text-danger" href="{{ url('/dashboard/customer_dues') }}">Total Expenses</a> </div>
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col-auto">
+                                        <div class="info_label h5 mb-0 mr-3 font-weight-bold text-gray-800">
+                                            {{ totalExpenses() }}
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-3 mt-3">
+                <div class="card border-left-info shadow  py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-danger text-uppercase mb-1"> <a class="text-danger" href="{{ url('/dashboard/customer_dues') }}">Total Investment</a> </div>
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col-auto">
+                                        <div class="info_label h5 mb-0 mr-3 font-weight-bold text-gray-800">
+                                            {{ vendorDues() + totalExpenses()}}
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-3 mt-3">
+                <div class="card border-left-info shadow  py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-danger text-uppercase mb-1"> Profit</div>
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col-auto">
+                                        <div class="info_label h5 mb-0 mr-3 font-weight-bold text-gray-800">
+                                            {{ (customerDues() + stockValue() + cash()) - (vendorDues() + totalExpenses()) }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-3 mt-3">
+                <div class="card border-left-info shadow  py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-danger text-uppercase mb-1"> <a class="text-danger" href="{{ url('/dashboard/customer_dues') }}">{{ __('lang.CustomerDues') }}</a> </div>
                                 <div class="row no-gutters align-items-center">
                                     <div class="col-auto">
@@ -30,14 +110,68 @@
 
                                 </div>
                             </div>
-                            <div class="col-auto">
-                                <i class="fa fa-users fa-2x text-red text-danger"></i>
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-3 mt-3">
+                <div class="card border-left-info shadow  py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Stock Value</div>
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col-auto">
+                                        <div class="info_label h5 mb-0 mr-3 font-weight-bold text-gray-800">
+                                            {{ stockValue() }}
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-xl-3 col-md-3 mt-3">
+                <div class="card border-left-info shadow  py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Cash</div>
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col-auto">
+                                        <div class="info_label h5 mb-0 mr-3 font-weight-bold text-gray-800">
+                                            {{ cash() }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-3 mt-3">
+                <div class="card border-left-info shadow  py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Total Outcome</div>
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col-auto">
+                                        <div class="info_label h5 mb-0 mr-3 font-weight-bold text-gray-800">
+                                            {{ customerDues() + stockValue() + cash()}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+           {{--  <div class="col-xl-3 col-md-3 mt-3">
                 <div class="card border-left-info shadow  py-2">
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
@@ -193,7 +327,7 @@
                         </div>
 
                 </div>
-            </div>
+            </div> --}}
 
         </div>
     </div>
