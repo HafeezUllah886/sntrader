@@ -19,7 +19,7 @@ class purchaseController extends Controller
 {
     public function purchase()
     {
-        $vendors = account::where('type', 'Vendor')->get();
+        $vendors = account::where('type', '!=', 'Business')->get();
         $paidFroms = account::where('type', 'Business')->get();
         $products = products::all();
         $warehouses = warehouses::all();
