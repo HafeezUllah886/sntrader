@@ -20,7 +20,6 @@
         <script defer src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
         <script defer src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
-
         <link href= {{ asset("assets/css/bootstrap.min.css") }} rel="stylesheet" type="text/css">
         <link href= {{ asset("assets/css/icons.css") }} rel="stylesheet" type="text/css">
         <link href= {{ asset("assets/css/style.css") }} rel="stylesheet" type="text/css">
@@ -128,6 +127,7 @@
 
                       <a class="dropdown-item" href="{{ url('/stock') }}">{{ __('lang.StockDetail') }}</a>
                       <a class="dropdown-item" href="{{ url('/stocktransfer') }}">Stock Transfer</a>
+                      <a class="dropdown-item" href="{{ route('adjustment.index') }}">Stock Adjustment</a>
                     </div>
                   </li>
                 <li class="nav-item dropdown">

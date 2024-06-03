@@ -16,6 +16,7 @@ use App\Http\Controllers\SaleReturnController;
 use App\Http\Controllers\StockController;
 use App\Http\Controllers\usersController;
 use App\Http\Controllers\PurchaseReceivesController;
+use App\Http\Controllers\StockAdjustmentController;
 use App\Http\Controllers\StockTransferController;
 use App\Http\Controllers\UnitsController;
 use App\Http\Controllers\WarehousesController;
@@ -51,6 +52,9 @@ Route::middleware('auth')->group(function (){
 
     Route::get('/logout', [AuthController::class, 'out']);
 
+    Route::resource('adjustment', StockAdjustmentController::class);
+    Route::get('/deleteAdjustment/{ref}', [StockAdjustmentController::class, 'delete'])->name('adjustment.delete');
+
     Route::get('/dashboard', [dashboardController::class, "dashboard"]);
     Route::get('/addProduct', [productController::class, "add"]);
 
@@ -81,18 +85,14 @@ Route::middleware('auth')->group(function (){
     Route::post('/account/vendor/import', [AccountController::class, "vendorImport"]);
     Route::post('/account/customer/import', [AccountController::class, "customerImport"]);
 
-
     Route::get('/deposit', [AccountController::class, "deposit"]);
     Route::post('/deposit', [AccountController::class, "storeDeposit"]);
-
 
     Route::get('/withdraw', [AccountController::class, "withdraw"]);
     Route::post('/withdraw', [AccountController::class, "storeWithdraw"]);
 
-
     Route::get('/expense', [AccountController::class, "expense"]);
     Route::post('/expense', [AccountController::class, "storeExpense"]);
-
 
     Route::get('/transfer', [AccountController::class, "transfer"]);
     Route::post('/transfer', [AccountController::class, "storeTransfer"]);
