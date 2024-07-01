@@ -205,7 +205,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">{{ __('lang.CreateTransfer') }}</h5>
+                <h5 class="modal-title">Create Transfers</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -231,7 +231,7 @@
                     </div>
                     <div class="form-group">
                         <label for="date">{{ __('lang.Date') }}</label>
-                       <input type="datetime-local" name="date" id="date" value="{{ now() }}" class="form-control">
+                       <input type="date" name="date" id="date" value="{{ date("Y-m-d") }}" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="desc">{{ __('lang.Desc') }}</label>

@@ -51,17 +51,21 @@ class dashboardController extends Controller
     }
 
     public function customer_d(){
-        $transactions = transactions::whereHas('account', function ($query) {
-            $query->where('type', 'Customer');
-        })->get();
-        return view('dash_extra.customer_d')->with(compact('transactions'));
+        $accounts = account::where('type', 'Customer')->get();
+        foreach($accounts as $account)
+        {
+            $account->balance = getAccountBalance($account->id);
+        }
+        return view('dash_extra.customer_d')->with(compact('accounts'));
     }
 
     public function vendors_d(){
-        $transactions = transactions::whereHas('account', function ($query) {
-            $query->where('type', 'Vendor');
-        })->get();
-        return view('dash_extra.vendors_d')->with(compact('transactions'));
+        $accounts = account::where('type', 'Vendor')->get();
+        foreach($accounts as $account)
+        {
+            $account->balance = getAccountBalance($account->id);
+        }
+        return view('dash_extra.vendors_d')->with(compact('accounts'));
     }
 
     public function today_sale(){

@@ -80,6 +80,7 @@ App::setLocale(auth()->user()->lang);
                                 <td>
 
                                     <button onclick='edit_pro({{ $pro->id }})' class="btn btn-primary">Edit</button>
+                                    <a href='{{route("productSaleHistory", $pro->id)}}' class="btn btn-secondary">Sales</a>
                                     <a href="{{ url('/product/delete/') }}/{{ $pro->id }}" class="btn btn-danger">Delete</a>
                                 </td>
                             </tr>

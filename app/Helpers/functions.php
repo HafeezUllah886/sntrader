@@ -393,3 +393,17 @@ function previousCash($date){
 
    return $balance;
 }
+
+function firstDayOfMonth()
+{
+    $startOfMonth = Carbon::now()->startOfMonth();
+
+    return $startOfMonth->format('Y-m-d');
+}
+function lastDayOfMonth()
+{
+
+    $endOfMonth = Carbon::now()->endOfMonth();
+
+    return $endOfMonth->format('Y-m-d');
+}

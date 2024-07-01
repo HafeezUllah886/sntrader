@@ -218,6 +218,8 @@ Route::middleware('auth')->group(function (){
     Route::get('/expense/category', [ExpCategoryController::class, 'index']);
     Route::post('/expense/category/store', [ExpCategoryController::class, 'store']);
     Route::post('/expense/category/update', [ExpCategoryController::class, 'update']);
+
+    Route::get('product/sale_history/{id}/{start?}/{end?}', [StockController::class, 'sale_history'])->name('productSaleHistory');
 });
 
 Route::middleware(['confirm.password'])->group(function () {
