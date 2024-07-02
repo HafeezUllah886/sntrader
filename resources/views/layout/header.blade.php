@@ -161,7 +161,7 @@
                     <a class="dropdown-item" href="{{ url('/category') }}">Category</a>
                     <a class="dropdown-item" href="{{ url('/company') }}">Brand</a>
                     <a class="dropdown-item" href="{{ url('/units') }}">Units</a>
-                  
+
                   </div>
                 </li>
                    <li class="nav-item dropdown">
@@ -178,11 +178,12 @@
                       <a class="dropdown-item" href="{{ url('/warehouses') }}">Warehosues</a>
                       @if (auth()->user()->role == 1)
                       <a class="dropdown-item" href="{{ url('/users') }}">Users</a>
+                      <a class="dropdown-item" href="{{ route('employees.index') }}">HR</a>
                       @endif
                       <a class="dropdown-item" href="{{ url('/areas') }}">Areas</a>
                     </div>
                   </li>
-                 
+
               </ul>
               <a class="btn btn-success" href="{{ url('/pos') }}">POS</a>
                    <a class="btn btn-primary ml-4" href="{{ url('/logout') }}" >
@@ -193,7 +194,7 @@
                     {{auth()->user()->name}}<br>
                     {{auth()->user()->warehouse->name}}
                    </span>
-                  
+
             </div>
           </nav>
 

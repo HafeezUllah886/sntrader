@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ConfirmPasswordController;
 use App\Http\Controllers\dashboardController;
 use App\Http\Controllers\ExpCategoryController;
+use App\Http\Controllers\HrController;
 use App\Http\Controllers\POSController;
 use App\Http\Controllers\productController;
 use App\Http\Controllers\purchaseController;
@@ -47,6 +48,9 @@ Route::get('/clear-cache', function() {
 });
 
 Route::middleware('auth')->group(function (){
+
+    Route::resource('/employees', HrController::class);
+
     Route::get('confirm-password', [ConfirmPasswordController::class, 'showConfirmPasswordForm'])->name('confirm-password');
     Route::post('confirm-password', [ConfirmPasswordController::class, 'confirmPassword']);
 
@@ -220,6 +224,8 @@ Route::middleware('auth')->group(function (){
     Route::post('/expense/category/update', [ExpCategoryController::class, 'update']);
 
     Route::get('product/sale_history/{id}/{start?}/{end?}', [StockController::class, 'sale_history'])->name('productSaleHistory');
+
+
 });
 
 Route::middleware(['confirm.password'])->group(function () {
