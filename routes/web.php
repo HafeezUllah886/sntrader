@@ -17,10 +17,12 @@ use App\Http\Controllers\SaleReturnController;
 use App\Http\Controllers\StockController;
 use App\Http\Controllers\usersController;
 use App\Http\Controllers\PurchaseReceivesController;
+use App\Http\Controllers\SalariesController;
 use App\Http\Controllers\StockAdjustmentController;
 use App\Http\Controllers\StockTransferController;
 use App\Http\Controllers\UnitsController;
 use App\Http\Controllers\WarehousesController;
+use App\Models\salaries;
 use App\Models\warehouses;
 use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Support\Facades\Artisan;
@@ -49,8 +51,7 @@ Route::get('/clear-cache', function() {
 
 Route::middleware('auth')->group(function (){
 
-    Route::resource('/employees', HrController::class);
-
+   
     Route::get('confirm-password', [ConfirmPasswordController::class, 'showConfirmPasswordForm'])->name('confirm-password');
     Route::post('confirm-password', [ConfirmPasswordController::class, 'confirmPassword']);
 
@@ -225,6 +226,10 @@ Route::middleware('auth')->group(function (){
 
     Route::get('product/sale_history/{id}/{start?}/{end?}', [StockController::class, 'sale_history'])->name('productSaleHistory');
 
+    Route::resource('/employees', HrController::class);
+    Route::resource('/salaries', SalariesController::class);
+
+
 
 });
 
@@ -238,4 +243,5 @@ Route::middleware(['confirm.password'])->group(function () {
     Route::get('/expense/delete/{ref}', [AccountController::class, "deleteExpense"]);
     Route::get('/return/delete/{ref}', [SaleReturnController::class, 'delete']);
     Route::get('/stocktransfer/delete/{ref}', [StockTransferController::class, 'delete']);
+    Route::get('/salaries/delete/{id}/{ref}', [SalariesController::class, 'destroy'])->name('salaries.delete');
 });
