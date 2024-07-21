@@ -305,6 +305,29 @@ class SaleController extends Controller
         updateSaleAmount($id);
         return "Discount Updated";
     }
+    public function updateEditDate($ref, $date){
+        sale::where('ref', $ref)->update(
+            [
+                'date' => $date
+            ]
+        );
+        sale_details::where('ref', $ref)->update(
+            [
+                'date' => $date
+            ]
+        );
+        stock::where('ref', $ref)->update(
+            [
+                'date' => $date
+            ]
+        );
+        transactions::where('ref', $ref)->update(
+            [
+                'date' => $date
+            ]
+            );
+        return "Date Updated";
+    }
 
     public function updateEditPrice($id, $price){
         $item = sale_details::find($id);

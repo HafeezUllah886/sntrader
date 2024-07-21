@@ -148,6 +148,7 @@ Route::middleware('auth')->group(function (){
     Route::get('/sale/update/edit/price/{id}/{price}', [saleController::class, "updateEditPrice"]);
     Route::get('/sale/update/edit/discount/{id}/{discount}', [saleController::class, "updateEditDiscount1"]);
     Route::get('/sale/update/discount/{id}/{discount}', [saleController::class, "updateEditDiscount"]);
+    Route::get('/sale/update/date/{ref}/{date}', [saleController::class, "updateEditDate"]);
 
     Route::get('/stock/{warehouse?}',[StockController::class, "stock"]);
 

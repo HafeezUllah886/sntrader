@@ -13,6 +13,7 @@
 <div class="card">
     {{-- Top card section --}}
     <div class="card-body">
+        <h3>{{date('d M Y')}}</h3>
         <div class="row">
             <div class="col-xl-3 col-md-3 mt-3">
                 <div class="card border-left-info shadow  py-2">

@@ -97,91 +97,20 @@
 
                         </tbody>
                     </table>
-                    <div class="form-group mt-3">
-                        <label for="discount">{{ __('lang.Discount') }}</label>
-                        <input type="number" value="{{ $bill->discount }}" onfocusout="updateDiscount({{ $bill->id }})" name="discount" id="discount">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group mt-3">
+                                <label for="discount">{{ __('lang.Discount') }}</label>
+                                <input type="number" class="form-control" value="{{ $bill->discount }}" onfocusout="updateDiscount({{ $bill->id }})" name="discount" id="discount">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group mt-3">
+                                <label for="date">{{ __('lang.Date') }}</label>
+                                <input type="datetime-local" value="{{ $bill->date }}" class="form-control" onfocusout="updateDate({{ $bill->ref }})" name="date" id="date">
+                            </div>
+                        </div>
                     </div>
-                    {{-- <form method="post" class="mt-5">
-                        @csrf
-                        <div class="row">
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                    <label for="date">Date</label>
-                                    <input type="date" name="date" value="{{ $bill->date }}" id="date" class="form-control">
-                                    @error('date')
-                                    <span class="text-danger">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="form-group">
-                                    <label for="vendor">Select Vendor</label>
-                                    <select name="vendor" id="vendor" class="select2">
-                                        <option value=""></option>
-                                        @foreach ($vendors as $vendor)
-                                            <option value="{{ $vendor->id }}" {{ $bill->vendor_account->id == $vendor->id ? 'Selected' : ''}}>{{ $vendor->title }}</option>
-                                        @endforeach
-                                    </select>
-                                    @error('vendor')
-                                    <span class="text-danger">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                    <label for="isPaid">is Paid</label>
-                                    <select name="isPaid" id="isPaid" onchange="abc()" class="form-control">
-                                        <option {{ $bill->isPaid == "Yes" ? 'Selected' : ''}}>Yes</option>
-                                        <option {{ $bill->isPaid == "No" ? 'Selected' : ''}}>No</option>
-                                        <option {{ $bill->isPaid == "Partial" ? 'Selected' : ''}}>Partial</option>
-                                    </select>
-                                    @error('isPaid')
-                                    <span class="text-danger">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="col-md-2" id="amount_box">
-                                <div class="form-group">
-                                    <label for="amount">Amount</label>
-                                    <input type="number" name="amount" value="{{ $bill->amount }}" id="amount" class="form-control">
-                                    @error('amount')
-                                    <span class="text-danger">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="col-md-3" id="paidIn_box">
-                                <div class="form-group">
-                                    <label for="paidFrom">Paid From</label>
-                                    <select name="paidFrom" id="paidFrom" class=" select2">
-                                        <option></option>
-                                        @foreach ($paidFroms as $acct)
-                                            <option value="{{ $acct->id }}" {{ @$bill->account->id == $acct->id ? 'Selected' : ''}}>{{ $acct->title }}</option>
-                                        @endforeach
-
-                                    </select>
-                                    @error('paidFrom')
-                                    <span class="text-danger">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="desc">Description</label>
-                                    <textarea name="desc" id="desc" class="form-control">{{ $bill->desc }}</textarea>
-                                    @error('amount')
-                                    <span class="text-danger">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="col-md-6 ">
-                                    <button type="submit" class="btn btn-success btn-lg" style="margin-top: 30px">Update</button>
-
-                            </div>
-                        </div>
-                    </form> --}}
                 </div>
 
             </div>
@@ -276,6 +205,25 @@ function updateDiscount(id){
             get_items();
             Snackbar.show({
             text: "Discount Updated",
+            duration: 3000,
+            /* actionTextColor: '#fff',
+            backgroundColor: '#e7515a' */
+            actionTextColor: '#fff',
+            backgroundColor: '#00ab55'
+            });
+        }
+    });
+}
+
+function updateDate(ref){
+    var val = $("#date").val();
+    $.ajax({
+        method: "GET",
+        url: "{{url('/sale/update/date/')}}/"+ref+"/"+val,
+        success: function(respose){
+            get_items();
+            Snackbar.show({
+            text: "Date Updated",
             duration: 3000,
             /* actionTextColor: '#fff',
             backgroundColor: '#e7515a' */
