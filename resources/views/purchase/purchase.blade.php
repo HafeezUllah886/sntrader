@@ -91,19 +91,19 @@
                     <div class="col-md-2">
                         <div class="form-group">
                             <label for="rate">{{ __('lang.PurchaseRate') }}</label>
-                            <input type="number" required name="rate" id="rate" class="form-control">
+                            <input type="number" required name="rate" step="any" id="rate" class="form-control">
                         </div>
                     </div>
                     <div class="col-md-2">
                         <div class="form-group">
                             <label for="price">Retail</label>
-                            <input type="number" required name="price" id="price" class="form-control">
+                            <input type="number" required name="price" step="any" id="price" class="form-control">
                         </div>
                     </div>
                     <div class="col-md-2">
                         <div class="form-group">
                             <label for="wholesale">Wholesale</label>
-                            <input type="number" required name="wholesale" id="wholesale" class="form-control">
+                            <input type="number" required name="wholesale" step="any" id="wholesale" class="form-control">
                         </div>
                     </div>
                     <div class="col-md-1">
