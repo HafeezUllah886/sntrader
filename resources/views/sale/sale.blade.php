@@ -118,17 +118,17 @@
                             <input type="hidden" id="max">
                         </div>
                     </div>
-                    
+
                     <div class="col-md-2 p-1">
                         <div class="form-group">
                             <label for="price1">{{__('lang.SalePrice')}}</label>
-                            <input type="number" required name="price" id="price" class="form-control">
+                            <input type="number" required name="price" step="any" id="price" class="form-control">
                         </div>
                     </div>
                     <div class="col-md-2 p-1">
                         <div class="form-group">
                             <label for="discount">Discount</label>
-                            <input type="number" id="discount" name="discount" value="0" required min="0" class="form-control">
+                            <input type="number" id="discount" name="discount" value="0" step="any" required min="0" class="form-control">
                         </div>
                     </div>
                     <div class="col-md-1 p-1">
