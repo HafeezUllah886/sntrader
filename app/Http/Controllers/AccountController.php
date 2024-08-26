@@ -321,8 +321,8 @@ class AccountController extends Controller
         }
         if($from->type == 'Vendor' && $to->type == 'Vendor')
            {
-            createTransaction($req->from, $req->date, $req->amount, 0, $desc, "Transfer", $ref);
-            createTransaction($req->to, $req->date, 0, $req->amount, $desc1, "Transfer", $ref);
+            createTransaction($req->from, $req->date, 0, $req->amount, $desc, "Transfer", $ref);
+            createTransaction($req->to, $req->date, $req->amount, 0, $desc1, "Transfer", $ref);
         }
 
         if($from->type == 'Vendor' && $to->type == 'Business'

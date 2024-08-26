@@ -298,9 +298,10 @@ class purchaseController extends Controller
         $item = purchase_details::find($id);
         $ref = $item->ref;
         $id = $item->bill_id;
-        $item->delete();
-        stock::where('ref', $ref)->delete();
+
+        stock::where(['ref' => $ref, 'product_id' => $item->product_id])->delete();
         updatePurchaseAmount($id);
+        $item->delete();
         return "Deleted";
     }
 
@@ -334,10 +335,10 @@ class purchaseController extends Controller
             stock::where('ref', $receives->ref)->delete();
             $receives->delete();
         }
-    
+
         purchase_details::where('ref', $ref)->delete();
         transactions::where('ref', $ref)->delete();
-        
+
         purchase::where('ref', $ref)->delete();
 
         ledger::where('ref', $ref)->delete();
