@@ -149,7 +149,7 @@
         "bPaginate": true,
         "bFilter": true,
         "bInfo": true,
-       "order": [[1, 'desc']],
+       "order": [[1, 'asc']],
 
     });
 </script>
