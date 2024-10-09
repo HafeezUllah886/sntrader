@@ -111,6 +111,20 @@ return [
 
     'faker_locale' => 'en_US',
 
+    'domains' => [
+        'maqbool.test',
+        'sntrader.test',
+        'maqbool.diamondquetta.com',
+        'cratetest.diamondquetta.com',
+        'crate.run',
+    ],
+
+    'databases' => [
+        'u788011464_maqbool',
+        'sntraders',
+    ],
+
+
     /*
     |--------------------------------------------------------------------------
     | Encryption Key

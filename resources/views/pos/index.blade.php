@@ -107,13 +107,15 @@
         <div class="col-6 h-100 d-flex flex-column" style="background:#fff;">
             <div class="row pt-2" style="height: 50px;">
                 <div class="col-12">
-                    <select name="product" class="selectize" placeholder="Search Product or Scan Barcode"
+                    {{-- <select name="product" class="selectize" placeholder="Search Product or Scan Barcode"
                         id="selectize">
                         @foreach ($products as $product)
                             <option value=""></option>
-                            <option value="{{ $product->id }}">{{ $product->code }} | {{ $product->name }} </option>
+                            <option value="{{ $product->id }}">{{ $product->code }} | {{ $product->name }} | {{$product->price}} </option>
                         @endforeach
-                    </select>
+                    </select> --}}
+
+                    <input type="search" class="form-control" id="productsSearch" placeholder="Search Products">
                 </div>
             </div>
             {{-- <div class="row pt-2 g-1" style="height: 50px;">
@@ -408,6 +410,22 @@
             $("#brandModal").modal('hide');
         }
 
+        $("#productsSearch").on("input", function(){
+            spinner();
+            var search = $(this).val();
+            if(search === null)
+            {
+                search = "all";
+            }
+            $.ajax({
+                url: "{{ url('/pos/search/') }}/" + search,
+                method: "GET",
+                success: function(data) {
+                    sidebar(data);
+                }
+            });
+        });
+
         function sidebar(data) {
 
             var sidebarHTML = "";
@@ -422,7 +440,7 @@
                 sidebarHTML += '<img src="' + image + '" class="card-img-top" style="width:100%;height:130px;">';
                 sidebarHTML += '<div class="card-body">';
                 sidebarHTML += '<h6 class="card-title">' + s.name + '</h5>';
-                sidebarHTML += '<p class="card-subtitle text-muted" style="font-size:10px;">' + s.category + " | " +s.brand + " | "+s.stock+'</p>';
+                sidebarHTML += '<p class="card-subtitle text-muted" style="font-size:10px;">' + s.pprice + " | " +s.price + " | "+s.code+'</p>';
                 sidebarHTML += '</div>';
                 sidebarHTML += '</div>';
                 sidebarHTML += '</div>';
@@ -517,7 +535,7 @@
             updateAmounts();
         }
 
-        
+
         function updateDiscount(id) {
             var discount = $("#discount_" + id).val();
             var amount = ($("#price_" + id).val() - discount) * $("#qty_" + id).val();

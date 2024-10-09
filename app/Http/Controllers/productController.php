@@ -93,6 +93,7 @@ class productController extends Controller
         $products = products::all();
         $categories = catergory::all();
         $brands = company::all();
+        dashboard();
         $products = products::all();
         foreach ($products as $product) {
             $stock_cr = stock::where('product_id', $product->id)->sum('cr');
@@ -151,7 +152,7 @@ class productController extends Controller
             $image_path = public_path('/images/products/' . $filename);
             $image_path1 = '/images/products/' . $filename;
             $image->move(public_path('/images/products/'), $filename);
-        
+
         products::where('id', $req->id)->update(
             [
                 'name' => $req->name,

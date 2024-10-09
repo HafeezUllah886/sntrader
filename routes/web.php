@@ -51,7 +51,7 @@ Route::get('/clear-cache', function() {
 
 Route::middleware('auth')->group(function (){
 
-   
+
     Route::get('confirm-password', [ConfirmPasswordController::class, 'showConfirmPasswordForm'])->name('confirm-password');
     Route::post('confirm-password', [ConfirmPasswordController::class, 'confirmPassword']);
 
@@ -204,6 +204,7 @@ Route::middleware('auth')->group(function (){
     Route::get('/pos/allProducts', [POSController::class, 'allProducts']);
     Route::get('/pos/byCategory/{id}', [POSController::class, 'byCategory']);
     Route::get('/pos/byBrand/{id}', [POSController::class, 'byBrand']);
+    Route::get('/pos/search/{search}', [POSController::class, 'search']);
     Route::get('/pos/getSingleProduct/{id}', [POSController::class, 'getSingleProduct']);
     Route::get('/pos/save', [POSController::class, 'store']);
 

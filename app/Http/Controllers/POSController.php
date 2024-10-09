@@ -12,6 +12,7 @@ use App\Models\salesman;
 use App\Models\stock;
 use App\Models\units;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class POSController extends Controller
 {
@@ -41,7 +42,41 @@ class POSController extends Controller
                 'pic' => $product->pic,
                 'category' => $product->category,
                 'brand' => $product->brand,
-                'stock' => $stock
+                'stock' => $stock,
+                'pprice' => $product->pprice,
+                'price' => $product->price,
+                'code' => $product->code
+            ];
+        }
+        return $data;
+    }
+
+    public function search($search)
+    {
+        $products = products::where('name', 'like', '%' . $search . '%')
+    ->orWhere('code', 'like', '%' . $search . '%')
+    ->get();
+        dashboard();
+    if($products->count() == 0)
+    {
+        $product = products::all();
+    }
+        $data = [];
+        foreach($products as $product)
+        {
+            $cr = stock::where('product_id', $product->id)->where('warehouseID', auth()->user()->warehouseID)->sum('cr');
+            $db = stock::where('product_id', $product->id)->where('warehouseID', auth()->user()->warehouseID)->sum('db');
+            $stock = $cr - $db;
+            $data[] = [
+                'id' => $product->id,
+                'name' => $product->name,
+                'pic' => $product->pic,
+                'category' => $product->category,
+                'brand' => $product->brand,
+                'stock' => $stock,
+                'pprice' => $product->pprice,
+                'price' => $product->price,
+                'code' => $product->code
             ];
         }
         return $data;

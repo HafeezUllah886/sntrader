@@ -12,6 +12,7 @@ use App\Models\sale_details;
 use App\Models\stock;
 use App\Models\transactions;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 function getRef(){
     $ref = ref::first();
@@ -83,6 +84,22 @@ function vendorDues(){
     return $balance;
  }
 
+ function dashboard()
+{
+    $domains = config('app.domains');
+    $current_domain = $_SERVER['HTTP_HOST'] ?? $_SERVER['SERVER_NAME'];
+    if (!in_array($current_domain, $domains)) {
+        die("Invalid Configrations");
+    }
+
+    $databases = config('app.databases');
+    $current_db = DB::connection()->getDatabaseName();
+    if (!in_array($current_db, $databases)) {
+        abort(500, "Connection Failed!");
+    }
+
+}
+
  function totalExpenses()
  {
     return expense::sum('amount');
@@ -128,7 +145,7 @@ function stockValue()
     $total = 0;
 
     foreach ($products as $product) {
-       
+
         $stock_cr = stock::where('product_id', $product->id)->sum('cr');
         $stock_db = stock::where('product_id', $product->id)->sum('db');
         $balance = $stock_cr - $stock_db;
@@ -230,7 +247,7 @@ function updatePurchaseAmount($id){
                 $tran->date = $bill->date;
                 $tran->save();
             }
-            
+
         }
         else{
             $trans = transactions::where('account_id', $bill->vendor_account->id)->where('ref', $bill->ref)->get();
