@@ -57,10 +57,11 @@ class POSController extends Controller
     ->orWhere('code', 'like', '%' . $search . '%')
     ->get();
         dashboard();
-    if($products->count() == 0)
+    if($search == "all")
     {
-        $product = products::all();
+        $products = products::all();
     }
+
         $data = [];
         foreach($products as $product)
         {

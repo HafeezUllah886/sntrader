@@ -413,10 +413,12 @@
         $("#productsSearch").on("input", function(){
             spinner();
             var search = $(this).val();
-            if(search === null)
+
+            if(search === "")
             {
                 search = "all";
             }
+            console.log(search);
             $.ajax({
                 url: "{{ url('/pos/search/') }}/" + search,
                 method: "GET",
